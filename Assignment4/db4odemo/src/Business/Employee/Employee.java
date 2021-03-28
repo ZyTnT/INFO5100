@@ -11,16 +11,16 @@ package Business.Employee;
 public class Employee {
     
     private String name;
-    private int id;
+    private String employeeID;
     private static int count = 1;
 
     public Employee() {
-        id = count;
+        employeeID = "E" + count;
         count++;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return employeeID;
     }
 
     public void setName(String name) {

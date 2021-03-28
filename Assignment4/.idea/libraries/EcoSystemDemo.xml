@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="EcoSystemDemo">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/db4odemo/dist/EcoSystemDemo.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/__MACOSX/db4odemo/dist/lib/._AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/__MACOSX/db4odemo/dist/lib/._db4o-8.0.184.15484-all-java5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

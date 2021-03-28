@@ -1,7 +1,6 @@
 package Business.DB4OUtil;
 
-import Business.ConfigureASystem;
-import Business.EcoSystem;
+import Business.*;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
