@@ -1,12 +1,16 @@
 package Business.Order;
 
+import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
+import Business.Restaurant.Restaurant;
+
 import java.util.ArrayList;
 
 public class OrderDirectory {
     ArrayList<Order> orders = new ArrayList<>();
 
-    public void addOrder(String customerID, String restaurantID, String deliveryManID, String item){
-        Order order = new Order(customerID, restaurantID, deliveryManID, item);
+    public void addOrder(Customer customer, Restaurant restaurant, DeliveryMan deliveryMan, String item){
+        Order order = new Order(customer, restaurant, deliveryMan, item);
         order.setOrderID("O" + orders.size()+1);
         orders.add(order);
     }

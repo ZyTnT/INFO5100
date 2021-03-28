@@ -3,18 +3,20 @@ package Business.Order;
 import Business.Customer.Customer;
 import Business.DeliveryMan.DeliveryMan;
 import Business.Restaurant.Restaurant;
+import Business.WorkQueue.WorkRequest;
 
-public class Order {
+public class Order extends WorkRequest {
     private String orderID;
-    private String customerID;
-    private String restaurantID;
-    private String deliveryManID;
+    private Customer customer;
+    private Restaurant restaurant;
+    private DeliveryMan deliveryMan;
     private String item;
+    private int quantity;
 
-    public Order(String customerID, String restaurantID, String deliveryManID, String item){
-        this.customerID = customerID;
-        this.restaurantID = restaurantID;
-        this.deliveryManID = deliveryManID;
+    public Order(Customer customer, Restaurant restaurant, DeliveryMan deliveryMan, String item){
+        this.customer = customer;
+        this.restaurant = restaurant;
+        this.deliveryMan = deliveryMan;
         this.item = item;
     }
 
@@ -26,28 +28,28 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public String getCustomerID() {
-        return customerID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getRestaurantID() {
-        return restaurantID;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantID(String restaurantID) {
-        this.restaurantID = restaurantID;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public String getDeliveryManID() {
-        return deliveryManID;
+    public DeliveryMan getDeliveryMan() {
+        return deliveryMan;
     }
 
-    public void setDeliveryManID(String deliveryManID) {
-        this.deliveryManID = deliveryManID;
+    public void setDeliveryMan(DeliveryMan deliveryMan) {
+        this.deliveryMan = deliveryMan;
     }
 
     public String getItem() {
@@ -56,5 +58,13 @@ public class Order {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
