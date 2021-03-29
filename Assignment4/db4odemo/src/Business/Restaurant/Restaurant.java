@@ -16,12 +16,14 @@ public class Restaurant {
     private String name;
     private String phoneNum;
     private String address;
+    private String managerName;
     ArrayList<String> menu = new ArrayList<>();
 
-    public Restaurant(String name, String phoneNum, String address){
+    public Restaurant(String name, String phoneNum, String address, String managerName){
         this.name = name;
         this.phoneNum = phoneNum;
         this.address = address;
+        this.managerName = managerName;
     }
 
     public void addMenu(String item){
@@ -67,4 +69,13 @@ public class Restaurant {
     public void setMenu(ArrayList<String> menu) {
         this.menu = menu;
     }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+    
 }

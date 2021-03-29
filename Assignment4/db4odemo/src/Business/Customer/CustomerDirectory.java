@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class CustomerDirectory {
     ArrayList<Customer> customers = new ArrayList<Customer>();
 
-    public void addCustomer(String customerID, String name, String phoneNum, String address){
+    public void addCustomer(String name, String phoneNum, String address){
         Customer customer = new Customer(name, phoneNum, address);
-        customer.setCustomerID("C" + customers.size()+1);
+        customer.setCustomerID("C" + (customers.size()+1));
         customers.add(customer);
     }
 

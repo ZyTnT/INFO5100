@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class RestaurantDirectory {
     ArrayList<Restaurant> restaurants = new ArrayList<>();
 
-    public void addRestaurantDirectory(String name, String phoneNum, String address){
-        Restaurant restaurant = new Restaurant(name,phoneNum,address);
+    public void addRestaurant(String name, String phoneNum, String address,String managerName){
+        Restaurant restaurant = new Restaurant(name,phoneNum,address,managerName);
         restaurant.setRestaurantID("R" + restaurants.size()+1);
         restaurants.add(restaurant);
     }
