@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.EcoSystem;
 import java.util.ArrayList;
 
 /**
@@ -20,10 +21,15 @@ public class CustomerDirectory {
         customers.add(customer);
     }
 
-    public void deleteCustomer(String customerID){
+    public void deleteCustomer(String customerID, EcoSystem system){
         for(Customer customer: this.customers){
             if(customer.getCustomerID().equals(customerID)){
                 this.customers.remove(customer);
+            }
+        }
+        for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(customerID)){
+                system.getUserAccountDirectory().getUserAccountList().remove(i);
             }
         }
     }

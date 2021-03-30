@@ -6,6 +6,7 @@
 package Business.DeliveryMan;
 
 import Business.Customer.Customer;
+import Business.EcoSystem;
 
 import java.util.ArrayList;
 
@@ -16,23 +17,29 @@ import java.util.ArrayList;
 public class DeliveryManDirectory {
     ArrayList<DeliveryMan> deliveryMEN = new ArrayList<>();
 
-    public void addDeliveryMan(String name, String phoneNum){
-        DeliveryMan deliveryMan = new DeliveryMan(name, phoneNum);
-        deliveryMan.setId("D" + deliveryMEN.size()+1);
+    public void addDeliveryMan(String name, String phoneNum,String address){
+        DeliveryMan deliveryMan = new DeliveryMan(name, phoneNum,address);
+        deliveryMan.setDeliveryManID("D" + (deliveryMEN.size()+1));
         deliveryMEN.add(deliveryMan);
     }
 
-    public void deleteDeliveryMan(String id){
+    public void deleteDeliveryMan(String id, EcoSystem system){
         for(DeliveryMan deliveryMan: deliveryMEN){
-            if(deliveryMan.getId().equalsIgnoreCase(id)){
+            if(deliveryMan.getDeliveryManID().equalsIgnoreCase(id)){
                 deliveryMEN.remove(deliveryMan);
             }
         }
+        for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)){
+                system.getUserAccountDirectory().getUserAccountList().remove(i);
+            }
+        }
+        
     }
 
     public DeliveryMan getDeliveryMan(String id) {
         for (DeliveryMan deliveryMan : deliveryMEN) {
-            if (deliveryMan.getId().equalsIgnoreCase(id)) {
+            if (deliveryMan.getDeliveryManID().equalsIgnoreCase(id)) {
                 return deliveryMan;
             }
         }

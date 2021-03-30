@@ -72,7 +72,7 @@
                           <Component id="jLabel3" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel13" max="32767" attributes="0"/>
+                      <Component id="jLabel13" pref="583" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
@@ -150,7 +150,7 @@
                   <Component id="AddBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -14,9 +14,10 @@ public class Employee {
     private String employeeID;
     private static int count = 1;
 
-    public Employee() {
-        employeeID = "E" + count;
-        count++;
+    public Employee(String name) {
+        //employeeID = "E" + count;
+        //count++;
+        this.name = name;
     }
 
     public String getId() {
@@ -35,6 +36,10 @@ public class Employee {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
     }
     
     

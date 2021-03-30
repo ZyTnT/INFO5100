@@ -13,7 +13,38 @@ public class DeliveryMan {
     private String name;
     private String deliveryManID;
     private String phoneNum;
+    private String address;
 
+    
+    public DeliveryMan(String name, String phoneNum, String address){
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.address = address;
+    }
+    public DeliveryMan(String name, String phoneNum, String address,DeliveryManDirectory deliveryManDirectory){
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.address = address;
+        this.deliveryManID = "D" + (deliveryManDirectory.getDeliveryMEN().size()+1);
+    }
+    
+    public String getDeliveryManID() {
+        return deliveryManID;
+    }
+
+    public void setDeliveryManID(String deliveryManID) {
+        this.deliveryManID = deliveryManID;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    
     public DeliveryMan(String name, String phoneNum){
         this.name = name;
         this.phoneNum = phoneNum;
@@ -25,14 +56,6 @@ public class DeliveryMan {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getId() {
-        return deliveryManID;
-    }
-
-    public void setId(String id) {
-        this.deliveryManID = id;
     }
 
     public String getPhoneNum() {

@@ -6,6 +6,7 @@
 package Business.Restaurant;
 
 import Business.DeliveryMan.DeliveryMan;
+import Business.EcoSystem;
 
 import java.util.ArrayList;
 
@@ -18,14 +19,19 @@ public class RestaurantDirectory {
 
     public void addRestaurant(String name, String phoneNum, String address,String managerName){
         Restaurant restaurant = new Restaurant(name,phoneNum,address,managerName);
-        restaurant.setRestaurantID("R" + restaurants.size()+1);
+        restaurant.setRestaurantID("R" + (restaurants.size()+1));
         restaurants.add(restaurant);
     }
 
-    public void deleteRestaurant(String id){
+    public void deleteRestaurant(String id,EcoSystem system){
         for(Restaurant restaurant: restaurants){
             if(restaurant.getRestaurantID().equalsIgnoreCase(id)){
                 restaurants.remove(restaurant);
+            }
+        }
+        for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)){
+                system.getUserAccountDirectory().getUserAccountList().remove(i);
             }
         }
     }

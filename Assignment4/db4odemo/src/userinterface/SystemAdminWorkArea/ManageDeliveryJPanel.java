@@ -7,7 +7,10 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryMan;
+import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
+import Business.Restaurant.Restaurant;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -16,41 +19,35 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Yutong Zhen
+ * @author 甄雨桐
  */
-public class ManageCustomerJPanel extends javax.swing.JPanel {
+public class ManageDeliveryJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageCustomerJPanel
+     * Creates new form ManageDeliveryJPanel
      */
-    private CustomerDirectory customerDirectory;
+    private DeliveryManDirectory deliveryManDirectory;
     public JPanel container;
     public EcoSystem system;
     
-    public ManageCustomerJPanel(JPanel userProcessContainer, EcoSystem system, CustomerDirectory customerDirectory) {
+    public ManageDeliveryJPanel(JPanel userProcessContainer, EcoSystem system, DeliveryManDirectory deliveryManDirectory) {
         initComponents();
-        this.customerDirectory = customerDirectory;
+        this.deliveryManDirectory = deliveryManDirectory;
         this.container = userProcessContainer;
         this.system = system;
-        //customerDirectory.addCustomer("AA", "BB", "CC");
         populateTable();
     }
     
-    public ManageCustomerJPanel() {
-        initComponents();
-    }
-    
     public void populateTable(){
-        DefaultTableModel model  = (DefaultTableModel)CustomerInfojTable.getModel();
-        model.setRowCount(0);
-        for(Customer customer: customerDirectory.getCustomers()){
-            Object[] row  = new Object[2];
-            row[0] = customer.getCustomerID();
-            row[1] = customer.getName();
-            model.addRow(row);
-        }
+    DefaultTableModel model  = (DefaultTableModel)DeliveryManInfojTable.getModel();
+    model.setRowCount(0);
+    for(DeliveryMan deliveryMan: deliveryManDirectory.getDeliveryMEN()){
+        Object[] row  = new Object[2];
+        row[0] = deliveryMan.getDeliveryManID();
+        row[1] = deliveryMan.getName();
+        model.addRow(row);
     }
-
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,9 +57,13 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        CustomerInfojTable = new javax.swing.JTable();
+        DeliveryManInfojTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
         idText = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         nameText = new javax.swing.JTextField();
         phoneNumText = new javax.swing.JTextField();
         addressText = new javax.swing.JTextField();
@@ -70,14 +71,13 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         viewBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        backBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        savaBtn = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        CustomerInfojTable.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel3.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        jLabel3.setText("Phone Number");
+
+        DeliveryManInfojTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -85,7 +85,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "CustomerID", "name"
+                "DiliveryManID", "name"
             }
         ) {
             Class[] types = new Class [] {
@@ -103,9 +103,23 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(CustomerInfojTable);
+        jScrollPane1.setViewportView(DeliveryManInfojTable);
+
+        jLabel4.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        jLabel4.setText("Address");
+
+        backBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         idText.setEditable(false);
+
+        jLabel5.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
+        jLabel5.setText("Manage DeliveryMan");
 
         nameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +135,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         AddBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         AddBtn.setForeground(new java.awt.Color(255, 51, 51));
-        AddBtn.setText("Add Customer");
+        AddBtn.setText("Add DeliveryMan");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddBtnActionPerformed(evt);
@@ -137,34 +151,17 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        jLabel1.setText("Customer ID");
+        jLabel1.setText("DeliveryMan ID");
 
         jLabel2.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jLabel2.setText("Name");
 
-        jLabel3.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        jLabel3.setText("Phone Number");
-
-        jLabel4.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        jLabel4.setText("Address");
-
-        backBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
+        saveBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(255, 0, 0));
+        saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
-        jLabel5.setText("Manage Customers");
-
-        savaBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
-        savaBtn.setForeground(new java.awt.Color(255, 51, 51));
-        savaBtn.setText("Save");
-        savaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savaBtnActionPerformed(evt);
+                saveBtnActionPerformed(evt);
             }
         });
 
@@ -190,21 +187,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(64, 64, 64)
-                                        .addComponent(savaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1)
                                     .addComponent(phoneNumText, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,8 +196,25 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel2)
                                     .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))))))
-                .addContainerGap(410, Short.MAX_VALUE))
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(69, 69, 69)
+                                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(4, 4, 4)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(34, 34, 34)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(75, 75, 75)
+                                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +227,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddBtn)
                     .addComponent(viewBtn)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -243,30 +242,24 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneNumText)
+                    .addComponent(phoneNumText, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(addressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(savaBtn))
-                .addGap(243, 243, 243))
+                    .addComponent(saveBtn))
+                .addGap(250, 250, 250))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = CustomerInfojTable.getSelectedRow();
-        if(selectedIndex<0){
-            JOptionPane.showMessageDialog(this, "Pleas select a row!");
-            return;
-        }
-        DefaultTableModel model  = (DefaultTableModel)CustomerInfojTable.getModel();
-        Customer customer = customerDirectory.getCustomers().get(selectedIndex);
-        nameText.setText(customer.getName());
-        idText.setText(customer.getCustomerID());
-        phoneNumText.setText(customer.getPhoneNum());
-        addressText.setText(customer.getAddress());
-    }//GEN-LAST:event_viewBtnActionPerformed
+        container.remove(this);
+        Component[] componentArray = container.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
         // TODO add your handling code here:
@@ -279,44 +272,50 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) container.getLayout();
-        AddCustomerJPanel createCustomersJPanel = new AddCustomerJPanel(container, system, customerDirectory);
-        container.add(createCustomersJPanel);
+        AddDeliveryManJPanel addDeliveryManJPanel = new AddDeliveryManJPanel(container, system, deliveryManDirectory);
+        container.add(addDeliveryManJPanel);
         layout.next(container);
     }//GEN-LAST:event_AddBtnActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
-        container.remove(this);
-        Component[] componentArray = container.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
-    }//GEN-LAST:event_backBtnActionPerformed
-
-    private void savaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savaBtnActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = CustomerInfojTable.getSelectedRow();
+        int selectedIndex = DeliveryManInfojTable.getSelectedRow();
         if(selectedIndex<0){
             JOptionPane.showMessageDialog(this, "Pleas select a row!");
             return;
         }
-        DefaultTableModel model  = (DefaultTableModel)CustomerInfojTable.getModel();
-        Customer customer = customerDirectory.getCustomers().get(selectedIndex);
-        customer.setName(nameText.getText());
-        customer.setAddress(addressText.getText());
-        customer.setPhoneNum(phoneNumText.getText());
-    }//GEN-LAST:event_savaBtnActionPerformed
+        DefaultTableModel model  = (DefaultTableModel)DeliveryManInfojTable.getModel();
+        DeliveryMan deliveryMan = deliveryManDirectory.getDeliveryMEN().get(selectedIndex);
+        nameText.setText(deliveryMan.getName());
+        idText.setText(deliveryMan.getDeliveryManID());
+        phoneNumText.setText(deliveryMan.getPhoneNum());
+        addressText.setText(deliveryMan.getAddress());
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = DeliveryManInfojTable.getSelectedRow();
+        if(selectedIndex<0){
+            JOptionPane.showMessageDialog(this, "Pleas select a row!");
+            return;
+        }
+        DefaultTableModel model  = (DefaultTableModel)DeliveryManInfojTable.getModel();
+        DeliveryMan deliveryMan = deliveryManDirectory.getDeliveryMEN().get(selectedIndex);
+        deliveryMan.setName(nameText.getText());
+        deliveryMan.setAddress(addressText.getText());
+        deliveryMan.setPhoneNum(phoneNumText.getText());
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = CustomerInfojTable.getSelectedRow();
-        int count = CustomerInfojTable.getSelectedRowCount();
+        int selectedIndex = DeliveryManInfojTable.getSelectedRow();
+        int count = DeliveryManInfojTable.getSelectedRowCount();
         if(count == 1){
             if (selectedIndex >= 0) {
             int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Sure to delete?", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
-                customerDirectory.deleteCustomer(customerDirectory.getCustomers().get(selectedIndex).getCustomerID(),system);
+                deliveryManDirectory.deleteDeliveryMan(deliveryManDirectory.getDeliveryMEN().get(selectedIndex).getDeliveryManID(),system);
                 populateTable();
             }
         }
@@ -329,7 +328,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
-    private javax.swing.JTable CustomerInfojTable;
+    private javax.swing.JTable DeliveryManInfojTable;
     private javax.swing.JTextField addressText;
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField idText;
@@ -342,7 +341,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField phoneNumText;
-    private javax.swing.JButton savaBtn;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }
