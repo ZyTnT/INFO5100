@@ -125,6 +125,12 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel10.setText("Dish 1(Optional):");
 
+        dish1Text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dish1TextActionPerformed(evt);
+            }
+        });
+
         jLabel11.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel11.setText("Dish 2(Optional):");
 
@@ -277,16 +283,22 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Two password input are not equal!");
         }
         else{
-            Restaurant restaurant = new Restaurant(restaurantName,phone,address, managerName);
-            restaurant.setRestaurantID("R" + (restaurantDirectory.getRestaurants().size()+1));
+            Restaurant restaurant = restaurantDirectory.addRestaurant(restaurantName, phone, address, managerName);
+            //restaurant.setRestaurantID("R" + (restaurantDirectory.getRestaurants().size()+1));
+            if(!dish1.isEmpty()){
             restaurant.getMenu().add(dish1);
+            }
+            if(!dish2.isEmpty()){
             restaurant.getMenu().add(dish2);
+            }
+            if(!dish3.isEmpty()){
             restaurant.getMenu().add(dish3);
-            restaurantDirectory.getRestaurants().add(restaurant);
+            }
             Employee employee = system.getEmployeeDirectory().createEmployee(restaurant.getRestaurantID());
 
             UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, password, employee, new AdminRole());
             JOptionPane.showMessageDialog(null, "Restaurant added!");
+            userNameText.setText("");
             restaurantNameText.setText("");
             passwordText.setText("");
             repeatPasswordText.setText("");
@@ -311,6 +323,10 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void dish1TextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dish1TextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dish1TextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

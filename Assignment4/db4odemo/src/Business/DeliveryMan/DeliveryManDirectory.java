@@ -17,23 +17,22 @@ import java.util.ArrayList;
 public class DeliveryManDirectory {
     ArrayList<DeliveryMan> deliveryMEN = new ArrayList<>();
 
-    public void addDeliveryMan(String name, String phoneNum,String address){
-        DeliveryMan deliveryMan = new DeliveryMan(name, phoneNum,address);
-        deliveryMan.setDeliveryManID("D" + (deliveryMEN.size()+1));
+    public DeliveryMan addDeliveryMan(String name, String phoneNum,String address){
+        DeliveryMan deliveryMan = new DeliveryMan(("D" + (deliveryMEN.size()+1)), name, phoneNum,address);
+        //deliveryMan.setDeliveryManID("D" + (deliveryMEN.size()+1));
         deliveryMEN.add(deliveryMan);
+        return deliveryMan;
     }
 
-    public void deleteDeliveryMan(String id, EcoSystem system){
-        for(DeliveryMan deliveryMan: deliveryMEN){
-            if(deliveryMan.getDeliveryManID().equalsIgnoreCase(id)){
-                deliveryMEN.remove(deliveryMan);
-            }
-        }
+    public void deleteDeliveryMan(String id, int index, EcoSystem system){
         for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
-            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)){
-                system.getUserAccountDirectory().getUserAccountList().remove(i);
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName() != null) {
+                if (system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)) {
+                    system.getUserAccountDirectory().getUserAccountList().remove(i);
+                }
             }
         }
+        deliveryMEN.remove(index);
         
     }
 

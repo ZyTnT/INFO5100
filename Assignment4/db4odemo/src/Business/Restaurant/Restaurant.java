@@ -6,6 +6,7 @@
 package Business.Restaurant;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -18,12 +19,23 @@ public class Restaurant {
     private String address;
     private String managerName;
     ArrayList<String> menu = new ArrayList<>();
+    
+    public void deleteItem(String itemName){
+        Iterator<String> iterator = menu.iterator();
+        while (iterator.hasNext()) {
+            String str = iterator.next();
+            if (str.equals(itemName)) {
+                iterator.remove();
+            }
+        }
+    }
 
-    public Restaurant(String name, String phoneNum, String address, String managerName){
+    public Restaurant(String id, String name, String phoneNum, String address, String managerName){
         this.name = name;
         this.phoneNum = phoneNum;
         this.address = address;
         this.managerName = managerName;
+        this.restaurantID = id;
     }
 
     public void addMenu(String item){

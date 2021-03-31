@@ -8,6 +8,7 @@ package userinterface.SystemAdminWorkArea;
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -41,13 +42,17 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-        DefaultTableModel model  = (DefaultTableModel)CustomerInfojTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) CustomerInfojTable.getModel();
         model.setRowCount(0);
-        for(Customer customer: customerDirectory.getCustomers()){
-            Object[] row  = new Object[2];
-            row[0] = customer.getCustomerID();
-            row[1] = customer.getName();
-            model.addRow(row);
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            for (Customer customer : customerDirectory.getCustomers()) {
+                if (customer.getName().equalsIgnoreCase(ua.getUsername())) {
+                    Object[] row = new Object[2];
+                    row[0] = customer.getCustomerID();
+                    row[1] = customer.getName();
+                    model.addRow(row);
+                }
+            }
         }
     }
 
@@ -305,6 +310,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         customer.setName(nameText.getText());
         customer.setAddress(addressText.getText());
         customer.setPhoneNum(phoneNumText.getText());
+        populateTable();
     }//GEN-LAST:event_savaBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -316,7 +322,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Sure to delete?", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
-                customerDirectory.deleteCustomer(customerDirectory.getCustomers().get(selectedIndex).getCustomerID(),system);
+                customerDirectory.deleteCustomer(customerDirectory.getCustomers().get(selectedIndex).getCustomerID(), CustomerInfojTable.getSelectedRow(), system);
                 populateTable();
             }
         }

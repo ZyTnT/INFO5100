@@ -25,7 +25,7 @@ public class DeliverManRole extends Role {
             RestaurantDirectory restaurantDirectory,
             DeliveryManDirectory deliveryManDirectory,
             OrderDirectory orderDirectory) {
-        return new DeliveryManWorkAreaJPanel(userProcessContainer,account,business);//To change body of generated methods, choose Tools | Templates.
+        return new DeliveryManWorkAreaJPanel(userProcessContainer,account,business, orderDirectory);//To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -17,23 +17,23 @@ import java.util.ArrayList;
 public class RestaurantDirectory {
     ArrayList<Restaurant> restaurants = new ArrayList<>();
 
-    public void addRestaurant(String name, String phoneNum, String address,String managerName){
-        Restaurant restaurant = new Restaurant(name,phoneNum,address,managerName);
-        restaurant.setRestaurantID("R" + (restaurants.size()+1));
+    public Restaurant addRestaurant(String name, String phoneNum, String address,String managerName){
+        Restaurant restaurant = new Restaurant(("R" + (restaurants.size()+1)), name,phoneNum,address,managerName);
+        //restaurant.setRestaurantID("R" + (restaurants.size()+1));
         restaurants.add(restaurant);
+        return restaurant;
     }
 
-    public void deleteRestaurant(String id,EcoSystem system){
-        for(Restaurant restaurant: restaurants){
-            if(restaurant.getRestaurantID().equalsIgnoreCase(id)){
-                restaurants.remove(restaurant);
-            }
-        }
+    public void deleteRestaurant(String id, int index, EcoSystem system){
         for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
-            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)){
-                system.getUserAccountDirectory().getUserAccountList().remove(i);
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName() != null) {
+
+                if (system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(id)) {
+                    system.getUserAccountDirectory().getUserAccountList().remove(i);
+                }
             }
         }
+        restaurants.remove(index);
     }
 
     public boolean isPhoneUnique(String phone){

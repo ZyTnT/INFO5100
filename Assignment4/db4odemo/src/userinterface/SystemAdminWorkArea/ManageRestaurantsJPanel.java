@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Employee.EmployeeDirectory;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -39,16 +40,18 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-    DefaultTableModel model  = (DefaultTableModel)restaurantTable.getModel();
-    model.setRowCount(0);
-    restaurantDirectory.getRestaurants().stream().map(restaurant -> {
-        Object[] row  = new Object[2];
-        row[0] = restaurant.getRestaurantID();
-        row[1] = restaurant.getName();
-            return row;
-        }).forEachOrdered(row -> {
-            model.addRow(row);
-        });
+        DefaultTableModel model = (DefaultTableModel) restaurantTable.getModel();
+        model.setRowCount(0);
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
+                if (restaurant.getName().equalsIgnoreCase(ua.getUsername())) {
+                    Object[] row = new Object[2];
+                    row[0] = restaurant.getRestaurantID();
+                    row[1] = restaurant.getName();
+                    model.addRow(row);
+                }
+            }
+        }
 }
 
     /**
@@ -316,6 +319,7 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
         restaurant.setAddress(addressText.getText());
         restaurant.setName(nameText.getText());
         restaurant.setPhoneNum(phoneText.getText());
+        populateTable();
         
     }//GEN-LAST:event_saveBtnActionPerformed
 
@@ -328,7 +332,7 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
             int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Sure to delete?", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
-                restaurantDirectory.deleteRestaurant(restaurantDirectory.getRestaurants().get(selectedIndex).getRestaurantID(),system);
+                restaurantDirectory.deleteRestaurant(restaurantDirectory.getRestaurants().get(selectedIndex).getRestaurantID(), selectedIndex, system);
                 populateTable();
             }
         }

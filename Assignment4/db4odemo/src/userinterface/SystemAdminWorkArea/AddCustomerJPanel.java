@@ -237,10 +237,8 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Two password input are not equal!");
         }
         else{
-            Customer customer = new Customer(customerName,phone,address);
-            customerDirectory.addCustomer(customerName,phone,address);
+            Customer customer = customerDirectory.addCustomer(customerName,phone,address);
             Employee employee = system.getEmployeeDirectory().createEmployee(customer.getCustomerID());
-            
             UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, password, employee, new CustomerRole());
             JOptionPane.showMessageDialog(null, "Customer added!");
             customerNameText.setText("");
@@ -254,7 +252,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-                container.remove(this);
+        container.remove(this);
         Component[] componentArray = container.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManageCustomerJPanel manageCustomersJPanel = (ManageCustomerJPanel) component;

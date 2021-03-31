@@ -12,12 +12,16 @@ public class Order extends WorkRequest {
     private DeliveryMan deliveryMan;
     private String item;
     private int quantity;
+    private String deliveryResult;
+    private String status;
+    private String comment;
 
-    public Order(Customer customer, Restaurant restaurant, DeliveryMan deliveryMan, String item){
+    public Order(String id, Customer customer, Restaurant restaurant,String item, int quantity){
+        this.orderID = id;
         this.customer = customer;
         this.restaurant = restaurant;
-        this.deliveryMan = deliveryMan;
         this.item = item;
+        this.quantity = quantity;
     }
 
     public String getOrderID() {
@@ -67,4 +71,31 @@ public class Order extends WorkRequest {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public String getDeliveryResult() {
+        return deliveryResult;
+    }
+
+    public void setDeliveryResult(String deliveryResult) {
+        this.deliveryResult = deliveryResult;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+    
+    
+    
 }

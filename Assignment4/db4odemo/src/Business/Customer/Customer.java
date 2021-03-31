@@ -20,6 +20,12 @@ public class Customer {
         this.phoneNum = phoneNum;
         this.address = address;
     }
+    public Customer(String id, String name, String phoneNum, String address,CustomerDirectory customerDirectory){
+        this.name = name;
+        this.phoneNum = phoneNum;
+        this.address = address;
+        this.customerID = id;
+    }
 
     public String getName() {
         return name;

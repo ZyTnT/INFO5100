@@ -11,6 +11,7 @@ import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -39,14 +40,19 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-    DefaultTableModel model  = (DefaultTableModel)DeliveryManInfojTable.getModel();
-    model.setRowCount(0);
-    for(DeliveryMan deliveryMan: deliveryManDirectory.getDeliveryMEN()){
-        Object[] row  = new Object[2];
-        row[0] = deliveryMan.getDeliveryManID();
-        row[1] = deliveryMan.getName();
-        model.addRow(row);
-    }
+        DefaultTableModel model = (DefaultTableModel) DeliveryManInfojTable.getModel();
+        
+        model.setRowCount(0);
+        for (UserAccount ua : system.getUserAccountDirectory().getUserAccountList()) {
+            for (DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryMEN()) {
+                if (deliveryMan.getName().equalsIgnoreCase(ua.getUsername())) {
+                    Object[] row = new Object[2];
+                    row[0] = deliveryMan.getDeliveryManID();
+                    row[1] = deliveryMan.getName();
+                    model.addRow(row);
+                }
+            }
+        }
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -199,12 +205,13 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel4)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addGap(69, 69, 69)
-                                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(4, 4, 4)
+                                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(4, 4, 4))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,6 +311,7 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
         deliveryMan.setName(nameText.getText());
         deliveryMan.setAddress(addressText.getText());
         deliveryMan.setPhoneNum(phoneNumText.getText());
+        populateTable();
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -315,7 +323,7 @@ public class ManageDeliveryJPanel extends javax.swing.JPanel {
             int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Sure to delete?", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
-                deliveryManDirectory.deleteDeliveryMan(deliveryManDirectory.getDeliveryMEN().get(selectedIndex).getDeliveryManID(),system);
+                deliveryManDirectory.deleteDeliveryMan(deliveryManDirectory.getDeliveryMEN().get(selectedIndex).getDeliveryManID(), selectedIndex, system);
                 populateTable();
             }
         }

@@ -16,16 +16,11 @@ public class DeliveryMan {
     private String address;
 
     
-    public DeliveryMan(String name, String phoneNum, String address){
+    public DeliveryMan(String id, String name, String phoneNum, String address){
         this.name = name;
         this.phoneNum = phoneNum;
         this.address = address;
-    }
-    public DeliveryMan(String name, String phoneNum, String address,DeliveryManDirectory deliveryManDirectory){
-        this.name = name;
-        this.phoneNum = phoneNum;
-        this.address = address;
-        this.deliveryManID = "D" + (deliveryManDirectory.getDeliveryMEN().size()+1);
+        this.deliveryManID = id;
     }
     
     public String getDeliveryManID() {
@@ -65,4 +60,5 @@ public class DeliveryMan {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+    
 }

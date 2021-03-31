@@ -15,23 +15,22 @@ import java.util.ArrayList;
 public class CustomerDirectory {
     ArrayList<Customer> customers = new ArrayList<Customer>();
 
-    public void addCustomer(String name, String phoneNum, String address){
+    public Customer addCustomer(String name, String phoneNum, String address){
         Customer customer = new Customer(name, phoneNum, address);
         customer.setCustomerID("C" + (customers.size()+1));
         customers.add(customer);
+        return customer;
     }
 
-    public void deleteCustomer(String customerID, EcoSystem system){
-        for(Customer customer: this.customers){
-            if(customer.getCustomerID().equals(customerID)){
-                this.customers.remove(customer);
-            }
-        }
+    public void deleteCustomer(String customerID, int index, EcoSystem system){
         for(int i =0; i <system.getUserAccountDirectory().getUserAccountList().size();i++){
-            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(customerID)){
-                system.getUserAccountDirectory().getUserAccountList().remove(i);
+            if(system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName() != null) {
+                if (system.getUserAccountDirectory().getUserAccountList().get(i).getEmployee().getName().equalsIgnoreCase(customerID)) {
+                    system.getUserAccountDirectory().getUserAccountList().remove(i);
+                }
             }
         }
+        customers.remove(index);
     }
 
     public boolean isPhoneUnique(String phone){
@@ -43,9 +42,9 @@ public class CustomerDirectory {
         return true;
     }
 
-    public Customer getCustomer(String id){
+    public Customer getCustomer(String name){
         for(Customer customer: customers){
-            if(customer.getCustomerID().equalsIgnoreCase(id)){
+            if(customer.getName().equalsIgnoreCase(name)){
                 return customer;
             }
         }

@@ -26,7 +26,7 @@ public class CustomerRole extends Role{
             RestaurantDirectory restaurantDirectory,
             DeliveryManDirectory deliveryManDirectory,
             OrderDirectory orderDirectory) {
-        return new CustomerAreaJPanel(userProcessContainer, account);
+        return new CustomerAreaJPanel(userProcessContainer, account, business, customerDirectory, restaurantDirectory,deliveryManDirectory, orderDirectory);
     }
     
     

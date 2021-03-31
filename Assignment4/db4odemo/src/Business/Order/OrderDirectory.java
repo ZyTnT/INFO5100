@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class OrderDirectory {
     ArrayList<Order> orders = new ArrayList<>();
 
-    public void addOrder(Customer customer, Restaurant restaurant, DeliveryMan deliveryMan, String item){
-        Order order = new Order(customer, restaurant, deliveryMan, item);
-        order.setOrderID("O" + orders.size()+1);
+    public Order addOrder(Customer customer, Restaurant restaurant, String item, int quantity){
+        Order order = new Order(("O" + (orders.size()+1)), customer, restaurant, item, quantity);
         orders.add(order);
+        return order;
     }
 
     public void deleteOrder(String orderID){

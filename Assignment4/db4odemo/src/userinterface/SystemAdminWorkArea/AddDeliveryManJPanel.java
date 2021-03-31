@@ -228,8 +228,7 @@ public class AddDeliveryManJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Two password input are not equal!");
         }
         else{
-            DeliveryMan deliveryMan = new DeliveryMan(deliveryManName,phone,address);
-            deliveryManDirectory.addDeliveryMan(deliveryManName,phone,address);
+            DeliveryMan deliveryMan = deliveryManDirectory.addDeliveryMan(deliveryManName,phone,address);
             Employee employee = system.getEmployeeDirectory().createEmployee(deliveryMan.getDeliveryManID());
 
             UserAccount account = system.getUserAccountDirectory().createUserAccount(userName, password, employee, new DeliverManRole());
@@ -248,8 +247,8 @@ public class AddDeliveryManJPanel extends javax.swing.JPanel {
         container.remove(this);
         Component[] componentArray = container.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageCustomerJPanel manageCustomersJPanel = (ManageCustomerJPanel) component;
-        manageCustomersJPanel.populateTable();
+        ManageDeliveryJPanel manageDeliveryJPanel = (ManageDeliveryJPanel) component;
+        manageDeliveryJPanel.populateTable();
 
         CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);

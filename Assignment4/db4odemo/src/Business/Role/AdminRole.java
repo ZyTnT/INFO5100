@@ -26,7 +26,7 @@ public class AdminRole extends Role{
             RestaurantDirectory restaurantDirectory,
             DeliveryManDirectory deliveryManDirectory,
             OrderDirectory orderDirectory) {
-        return new AdminWorkAreaJPanel(userProcessContainer);
+        return new AdminWorkAreaJPanel(userProcessContainer,account,business,restaurantDirectory,deliveryManDirectory,orderDirectory);
     }
 
     
