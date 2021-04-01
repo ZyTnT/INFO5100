@@ -53,10 +53,10 @@ public class ViewOrderJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(Order order : orderDirectory.getOrders()){
             if(order.getCustomer() != null){
-                System.out.println(order.getCustomer().getName());
-                System.out.println(userAccount.getUsername());
+                //System.out.println(order.getCustomer().getName());
+                //System.out.println(userAccount.getUsername());
                 if(order.getCustomer().getName().equals(userAccount.getUsername())){
-                    System.out.println("same");
+                    //System.out.println("same");
                     Object[] row = new Object[6];
                     row[0] = order.getOrderID();
                     row[1] = order.getStatus();

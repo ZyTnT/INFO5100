@@ -193,7 +193,7 @@ public class ManageResturantInfoJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(saveBtn)
                                     .addComponent(editBtn))))))
-                .addContainerGap(454, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

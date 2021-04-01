@@ -239,6 +239,7 @@ public class AddDeliveryManJPanel extends javax.swing.JPanel {
             DeliveryManNameText.setText("");
             phoneText.setText("");
             addressText.setText("");
+            userNameText.setText("");
         }
     }//GEN-LAST:event_AddBtnActionPerformed
 

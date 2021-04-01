@@ -157,7 +157,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jLabel5)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGap(106, 106, 106)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
@@ -247,6 +247,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
             customerNameText.setText("");
             phoneText.setText("");
             addressText.setText("");
+            userNameText.setText("");
         }
     }//GEN-LAST:event_AddBtnActionPerformed
 
